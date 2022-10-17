@@ -1,16 +1,24 @@
 package cript_object;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class CriptObject {
 	private String mnsj_original;
 	private String mnsj_final;
+	private Map<String, String> Patron = new LinkedHashMap<String, String>();
 	private static char[] alfabeto = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'W', 'X', 'Y', 'Z', 'a', 'b',
 			'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7',
 			'8', '9', '?', '!', '.', ',', '_'};
 	
-	//Inicializador
+	//Constructor vacio
+	public CriptObject() {
+	}
+	
+	//Constructor inicializador
 	public CriptObject(String mnsj) {
 		this.mnsj_original = mnsj;
-		this.mnsj_final = mnsj;
 	}
 	
 	//4 getters
@@ -22,6 +30,7 @@ public class CriptObject {
 		}
 		return alfaString;
 	}
+	
 	public String getMensajeOriginal() {
 		return mnsj_original;
 	}
@@ -30,16 +39,44 @@ public class CriptObject {
 		return mnsj_final;
 	}
 	
-	/*
-	 -Getter patron transformaciones
-	 * */
+	public void getPatron() {
+		for(String x : Patron.keySet()) {
+			System.out.println(Patron.get(x));
+		}
+	}
 	
 	//Algoritmo Cesar
 	public void algCesar(int clave) {
 	}
 	
+	public void desCesar() {
+		
+	}
+	
+	//Algoritmo Monoalfabético
+	public void algMonoalfa() {
+		
+	}
+	
+	public void desMonoalfa() {
+		
+	}
+	
+	//Algoritmo numeracion
+	public void algNumeracion() {
+		
+	}
+	
+	public void desNumeracion() {
+		
+	}
+	
+	//Recuperacion
+	public void recTransformacion() {
+		
+	}
 	//Pruebas
-	public static void main(String[] args) {
+	private static void main(String[] args) {
 		System.out.println(getAlfabeto());
 	}
 }
