@@ -99,12 +99,27 @@ public class CriptObject {
 	
 	//Algoritmo Monoalfabético
 	public void algMonoalfa(String clave) {
+		String palabraClave = "";
+		//quitamos las letras repetidas de la clave
+		int[] charRepetidos = new int[alfabeto.length];
+		
+		for(int x= 0;x < clave.length();x++) {
+			for(int y= 0;y<alfabeto.length;y++) {
+				if((clave.charAt(x) == alfabeto[y]) && (charRepetidos[y] == 0)) {
+					charRepetidos[y] = 1;
+					palabraClave.concat(String.valueOf(clave.charAt(x)));
+				}
+			}
+		}
+		
+		System.out.println(palabraClave + "AAA");
+		
 		String mnsj_encrip = "";
 		ArrayList<String> alfabetoFinal = new ArrayList<String>();
 		
 		//recorre el alfabeto para quitar las repetidas
 		for(int x=0;x<alfabeto.length;x++) {
-			if(!clave.contains(String.valueOf(alfabeto[x]))) {
+			if(!palabraClave.contains(String.valueOf(alfabeto[x]))) {
 				alfabetoFinal.add(String.valueOf(alfabeto[x]));
 			}
 		}
@@ -114,33 +129,44 @@ public class CriptObject {
 				for(String s : alfabetoFinal) {
 					System.out.print(s);
 				}
-		System.out.println();
-		
-		char[][] matriz = new char[clave.length()][alfabetoFinal.size() / clave.length()];
+				System.out.println();
+				
+				System.out.println("alfa final= "+alfabetoFinal.size());
+				System.out.println("division "+Math.ceil(alfabetoFinal.size() / palabraClave.length()));
+				System.out.println("x= "+palabraClave.length());
+				System.out.println("y= "+alfabetoFinal.size() / palabraClave.length());
+				
+				Double matrizXDouble = Math.ceil(alfabetoFinal.size() / palabraClave.length());
+				int matrizX = (int) Math.round(matrizXDouble);
+				
+		char[][] matriz = new char[matrizX][palabraClave.length()];
 		
 		
 		//recorre clave para ponerla en la matriz
-		int posX = 0;
-		int posY = 0;
+		int X = 0;
+		int Y = 0;
+		int posAlfabeto = 0;
 		
-		for(posX = posX;posX<clave.length();posX ++) {
-			matriz[posX][0] = clave.charAt(posX);
+		for(int posX = 0;posX<matriz.length;posX ++) {
+			for(int posY = 0;posY<matriz[posX].length;posY ++) {
+					matriz[posX][posY] = clave.charAt(posY);
+			}
 		}
 		
-		System.out.println("posX " + posX);
-		
-		int posAlfabeto = 0;
-		for(posX = posX;posX<matriz.length;posX++) {
-			for(posY = posY ;posY<matriz.length;posY++) {
-				matriz[posX][posY] = 'a';
-						//alfabetoFinal.get(posAlfabeto).charAt(0);
+		for(int posX = 1;posX<matriz.length;posX ++) {
+			for(int posY = 0;posY<matriz[posX].length;posY ++) {
+					matriz[posX][posY] = alfabetoFinal.get(posAlfabeto).charAt(0);
+					posAlfabeto++;
+				/*
+				matriz[posX][posY] = alfabetoFinal.get(posAlfabeto).charAt(0);
 				posAlfabeto++;
+				*/
 			}
 		}
 		
 		//prueba recorre matriz
 		for(int x=0;x<matriz.length;x++) {
-			for(int y=0;x<matriz.length;x++) {
+			for(int y=0;y<matriz[x].length;y++) {
 				System.out.print(matriz[x][y]);
 			}
 			System.out.println();
@@ -148,7 +174,7 @@ public class CriptObject {
 		
 		
 		
-		mnsj_final = mnsj_encrip;
+		this.mnsj_final = mnsj_encrip;
 		Patron.put("Monoalfa", clave);
 	}
 	
