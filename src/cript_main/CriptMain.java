@@ -16,7 +16,7 @@ public class CriptMain {
 		prueba.getPatron();
 		*/
 		
-		prueba.algMonoalfa("calle");
+		prueba.algMonoalfa("calee");
 		System.out.println(prueba.getMensajeFinal());
 		prueba.getPatron();
 	}
