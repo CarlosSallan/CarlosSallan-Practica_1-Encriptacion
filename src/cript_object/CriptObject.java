@@ -397,6 +397,14 @@ public class CriptObject {
 		}
 		System.out.println("------------------");
 		
+		for(int x = 0; x < matriz.length; x++) {
+			for(int y = 0; y < matriz[0].length; y++) {
+				System.out.print(matrizFinal[x][y]);
+			}
+			System.out.println();
+		}
+		
+		
 		Patron.put("DesMonoalfa", clave);
 		mnsj_final = mnsj_encrip;
 	}
