@@ -28,11 +28,9 @@ public class CriptMain {
 		prueba.algNumeracion("SEGURETAT");
 		System.out.println(prueba.getMensajeFinal());
 		prueba.getPatron();
-		/*
-		prueba.desNumeracion("calee");
+		prueba.desNumeracion("SEGURETAT");
 		System.out.println(prueba.getMensajeFinal());
 		prueba.getPatron();
-		*/
 	}
 
 }

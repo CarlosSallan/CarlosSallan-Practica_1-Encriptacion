@@ -42,7 +42,15 @@ public class CriptObject {
 	}
 
 	public String getMensajeFinal() {
-		return mnsj_final;
+		String mnsjFinal = "";
+		
+		for(int x = 0; x < mnsj_final.length() ; x++) {
+			if(mnsj_final.charAt(x) != ' ') {
+				mnsjFinal = mnsjFinal.concat(String.valueOf(mnsj_final.charAt(x)));
+			}
+		}
+		
+		return mnsjFinal;
 	}
 
 	public void getPatron() {
@@ -249,19 +257,6 @@ public class CriptObject {
 			}
 		}
 		
-		//Imprimimos alfabeto final
-		for(int x = 0; x < alfabetoLimpio.length(); x++) {
-			System.out.print(alfabetoLimpio.charAt(x));
-		}
-		
-		System.out.println();
-		
-		//Imprimimos alfabeto final
-		for(int x = 0; x < alfabetoFinal.length; x++) {
-			System.out.print(alfabetoFinal[x]);
-		}
-		System.out.println();
-		
 		//Ciframos
 		for(int x = 0; x < mnsj_final.length(); x++) {
 			for(int y = 0 ; y < alfabetoFinal.length; y++) {
@@ -322,31 +317,8 @@ public class CriptObject {
 		//Creamos una nueva matriz final
 		char[][] matrizFinal = new char[(int)Math.ceil(decimal)][ClaveFinal.length()];
 		
-		for(int x = 0; x < matriz.length; x++) {
-			System.out.print(matriz[x][0]);
-		}
-		System.out.println();
-		
 		//Ordenamos la matriz alfabeticamente
 		int matrizFinalPos = 0;
-		String matrizOrdenada = "";
-		
-		/*
-		//Primera linea matriz[0][y]
-		for(int y = 0; y < matriz[0].length; y++) {
-			//Por la clave
-			for(int alfPos = 0; alfPos < ClaveOrdenada.length();alfPos++) {
-				//Si coincide
-				if(ClaveOrdenada.charAt(alfPos) == matriz[0][y]) {
-					//concatenamos
-					for(int x = 0; x < matriz.length; x++) {
-						matrizOrdenada = matrizOrdenada.concat(String.valueOf(matriz[x][y]));
-					}
-				}
-			}
-
-		}
-		*/
 		
 		//Por la clave
 		for(int alfPos = 0; alfPos < ClaveOrdenada.length();alfPos++) {
@@ -355,62 +327,64 @@ public class CriptObject {
 				//Si coincide
 				if(ClaveOrdenada.charAt(alfPos) == matriz[0][y]) {
 					for(int x = 0; x < matriz.length; x++) {
-						matrizOrdenada = matrizOrdenada.concat(String.valueOf(matriz[x][y]));
+						mnsj_encrip = mnsj_encrip.concat(String.valueOf(matriz[x][y]));
 					}
 				}
 			}
 		}
-		System.out.println();
 		
-		System.out.println("Matriz ordenada: " + matrizOrdenada);
-		
-		//Metemos le string ordenado en la matriz Final
-		int matrizOrdenadaPos = 0;
-		for(int x = 0; x < matriz[0].length; x++) {
-			for(int y = 0; y < matriz.length; y++) {
-				matrizFinal[y][x] = matrizOrdenada.charAt(matrizOrdenadaPos);
-				matrizOrdenadaPos++;
+		Patron.put("AlgNumeracio", clave);
+		mnsj_final = mnsj_encrip;
+	}
+
+	public void desNumeracion(String clave) {
+		String mnsj_encrip = "";
+
+		//contamos el número de letras en la clave
+		String ClaveFinal = "";
+		for(int x = 0 ; x < clave.length() ; x++) {
+			if(!ClaveFinal.contains(String.valueOf(clave.charAt(x)))) {
+				ClaveFinal = ClaveFinal.concat(String.valueOf(clave.charAt(x)));
 			}
 		}
 		
-		//Imprimimos matriz
-		System.out.println();
-		System.out.println("No ordenada:");
-		System.out.println("------------------");
+		//Creamos la matriz y metemos el mnsj final
+		double decimal = (mnsj_final.length() / ClaveFinal.length()) + ((mnsj_final.length() % ClaveFinal.length()) * 0.1);
+		char[][] matriz = new char[(int)Math.ceil(decimal)][ClaveFinal.length()];
+		int mnsjPos = 0;
+		
+		for(int x = 0; x < matriz[0].length; x++) {
+			for(int y = 0; y < matriz.length; y++) {
+				matriz[y][x] = mnsj_final.charAt(mnsjPos);
+				mnsjPos++;
+			}
+		}
+		
+		/*
+		//Imprimimos
 		for(int x = 0; x < matriz.length; x++) {
 			for(int y = 0; y < matriz[0].length; y++) {
 				System.out.print(matriz[x][y]);
 			}
 			System.out.println();
 		}
-		System.out.println("------------------");
+		*/
 		
-		//Imprimimos matriz
-		System.out.println();
-		System.out.println("Ordenada:");
-		System.out.println("------------------");
-		for(int x = 0; x < matriz.length; x++) {
+		//Por la clave
+		for(int alfPos = 0; alfPos < ClaveFinal.length();alfPos++) {
+			//Primera linea matriz[0][y]
 			for(int y = 0; y < matriz[0].length; y++) {
-				System.out.print(matrizFinal[x][y]);
+				//Si coincide
+				if(ClaveFinal.charAt(alfPos) == matriz[0][y]) {
+					for(int x = 0; x < matriz.length; x++) {
+						mnsj_encrip = mnsj_encrip.concat(String.valueOf(matriz[x][y]));
+					}
+				}
 			}
-			System.out.println();
-		}
-		System.out.println("------------------");
-		
-		for(int x = 0; x < matriz.length; x++) {
-			for(int y = 0; y < matriz[0].length; y++) {
-				System.out.print(matrizFinal[x][y]);
-			}
-			System.out.println();
 		}
 		
-		
-		Patron.put("DesMonoalfa", clave);
+		Patron.put("DesNumeracio", clave);
 		mnsj_final = mnsj_encrip;
-	}
-
-	public void desNumeracion() {
-
 	}
 
 	// Recuperacion
