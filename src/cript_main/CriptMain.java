@@ -5,7 +5,7 @@ import cript_object.CriptObject;
 public class CriptMain {
 
 	public static void main(String[] args) {
-		CriptObject prueba = new CriptObject("NOPQ");
+		CriptObject prueba = new CriptObject("ATACIMMEDIATDESDELFLANCSUDOEST");
 		
 		/*
 		prueba.algCesar(3);
@@ -16,12 +16,23 @@ public class CriptMain {
 		prueba.getPatron();
 		*/
 		
+		/*
 		prueba.algMonoalfa("calee");
 		System.out.println(prueba.getMensajeFinal());
 		prueba.getPatron();
 		prueba.desMonoalfa("calee");
 		System.out.println(prueba.getMensajeFinal());
 		prueba.getPatron();
+		*/
+		
+		prueba.algNumeracion("SEGURETAT");
+		System.out.println(prueba.getMensajeFinal());
+		prueba.getPatron();
+		/*
+		prueba.desNumeracion("calee");
+		System.out.println(prueba.getMensajeFinal());
+		prueba.getPatron();
+		*/
 	}
 
 }
