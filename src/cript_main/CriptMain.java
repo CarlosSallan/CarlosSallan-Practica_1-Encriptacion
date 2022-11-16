@@ -1,7 +1,6 @@
 package cript_main;
 
 import cript_object.CriptObject;
-import cript_swing.CriptCrear;
 
 public class CriptMain {
 
@@ -35,7 +34,7 @@ public class CriptMain {
 		prueba.getPatron();
 		*/
 		
-		CriptCrear frame = new CriptCrear();
+		cript_object.CriptCrear frame = new cript_object.CriptCrear();
 	}
 
 }
