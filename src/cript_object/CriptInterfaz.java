@@ -1,25 +1,29 @@
 package cript_object;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class CriptCrear extends JFrame implements ActionListener{
+public class CriptInterfaz extends JFrame implements ActionListener{
 	
 	JTextField originalField;
 	JTextField finalField;
+	JButton ButNuevoMsj;
+	JButton ButCesar;
 	
-	public CriptCrear(){
+	public CriptInterfaz(CriptObject objeto){
 		this.setBounds(250, 150, 1000, 600);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setBackground(Color.decode("#d4b774"));
+		getContentPane().setBackground(Color.decode("#d97187"));
 		
 		//Label Original info
 		JLabel originalLabel = new JLabel("Mensaje original: ");
@@ -32,21 +36,34 @@ public class CriptCrear extends JFrame implements ActionListener{
 		this.add(finalLabel);
 		
 		//Textfield Original no editable
-		originalField = new JTextField("/NO HAY DATOS/");
+		originalField = new JTextField(objeto.getMensajeOriginal());
 		originalField.setBounds(110, 10, 870, 20);
 		originalField.setEditable(false);
 		this.add(originalField);
 		
 		//Textfield Original no editable
-		finalField = new JTextField("/NO HAY DATOS/");
+		finalField = new JTextField(objeto.getMensajeFinal());
 		finalField.setBounds(110, 32, 870, 20);
 		finalField.setEditable(false);
 		this.add(finalField);
+		
+		//Boton nuevo mensaje
+		ButNuevoMsj = new JButton("Nuevo Mensaje.");
+		ButNuevoMsj.setBounds(60, 70, 130, 35);
+		ButNuevoMsj.addActionListener(this);
+		this.add(ButNuevoMsj);
+		
+		//Boton cesar
+		ButCesar
 		
 		setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		
+		if(e.getSource() == ButNuevoMsj) {
+			CriptNuevoMnsj nuevoMsj = new CriptNuevoMnsj();
+			nuevoMsj.setVisible(true);
+			this.dispose();
+		}
 	}
 }
