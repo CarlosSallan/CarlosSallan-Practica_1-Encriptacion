@@ -26,6 +26,7 @@ public class CriptObject {
 	public CriptObject(String mnsj) {
 		this.mnsj_original = mnsj;
 		this.mnsj_final = mnsj;
+		Patron.put("Primer", 1234);
 	}
 
 	// 4 getters
@@ -390,11 +391,25 @@ public class CriptObject {
 
 	// Recuperacion
 	public void recTransformacion() {
+		
+		System.out.println(Patron.lastEntry().getKey());
+		
 		if(Patron.lastEntry().getKey() == "Cesar") {
 			
 			int claveCesar = Integer.parseInt(Patron.lastEntry().getValue().toString());
-			
 			desCesar(claveCesar);
+			
+		}else if(Patron.lastEntry().getKey() == "AlgMonoalfa"){ 
+			
+			desMonoalfa(Patron.lastEntry().getValue().toString());
+			
+		}else if(Patron.lastEntry().getKey() == "DesCesar") {
+			int claveCesar = Integer.parseInt(Patron.lastEntry().getValue().toString());
+			System.out.println("Deshaciendo");
+			algCesar(claveCesar);
+		}else if(Patron.lastEntry().getKey() == "DesMonoalfa") {
+			System.out.println("Deshaciendo");
+			desMonoalfa(Patron.lastEntry().getValue().toString());
 		}
 	}
 }

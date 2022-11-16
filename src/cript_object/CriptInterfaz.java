@@ -18,6 +18,7 @@ public class CriptInterfaz extends JFrame implements ActionListener{
 	JButton ButCesar;
 	JButton ButMonoalfa;
 	JButton ButNumeracion;
+	JButton ButDescifrar;
 	JTextField ClaveField;
 	CriptObject objeto;
 	
@@ -26,7 +27,7 @@ public class CriptInterfaz extends JFrame implements ActionListener{
 		
 		this.objeto = objeto;
 		
-		this.setBounds(250, 150, 1000, 600);
+		this.setBounds(250, 150, 1000, 400);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
@@ -89,6 +90,11 @@ public class CriptInterfaz extends JFrame implements ActionListener{
 		ButNumeracion.addActionListener(this);
 		this.add(ButNumeracion);
 		
+		//Boton nuevo descifrar
+		ButDescifrar = new JButton("Deshacer");
+		ButDescifrar.setBounds(800, 120, 130, 35);
+		ButDescifrar.addActionListener(this);
+		this.add(ButDescifrar);
 		setVisible(true);
 	}
 	
@@ -97,9 +103,36 @@ public class CriptInterfaz extends JFrame implements ActionListener{
 			CriptNuevoMnsj nuevoMsj = new CriptNuevoMnsj();
 			nuevoMsj.setVisible(true);
 			this.dispose();
-		}else if(e.getSource() == ButCesar) {
+		}else if(e.getSource() == ButDescifrar) {
 			objeto.recTransformacion();
-			//objeto.algCesar();
+			ActualizarFrame();
+			
+		}else if(e.getSource() == ButCesar) {
+			if(!(ClaveField.getText() == null)) {
+				objeto.recTransformacion();
+				int claveCesar = Integer.parseInt(ClaveField.getText());
+				objeto.algCesar(claveCesar);
+				ActualizarFrame();
+			}
+		}else if(e.getSource() == ButMonoalfa) {
+			if(!(ClaveField.getText() == null)) {
+				objeto.recTransformacion();
+				objeto.algMonoalfa(ClaveField.getText());
+				ActualizarFrame();
+			}
+			
+		}else if(e.getSource() == ButNumeracion) {
+			if(!(ClaveField.getText() == null)) {
+				objeto.recTransformacion();
+				objeto.algNumeracion(ClaveField.getText());
+				ActualizarFrame();
+			}
 		}
+		
+		
+	}
+	
+	private void ActualizarFrame() {
+		finalField.setText(objeto.getMensajeFinal());
 	}
 }
