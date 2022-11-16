@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.management.StringValueExp;
 
@@ -11,7 +12,7 @@ public class CriptObject {
 	private String mnsj_original;
 	private String mnsj_final;
 	// <"Nombre", "clave">
-	private Map<String, Object> Patron = new LinkedHashMap<String, Object>();
+	private TreeMap<String, Object> Patron = new TreeMap<String, Object>();
 	private static char[] alfabeto = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
 			'Q', 'R', 'S', 'T', 'U', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
 			'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6',
@@ -389,6 +390,11 @@ public class CriptObject {
 
 	// Recuperacion
 	public void recTransformacion() {
-
+		if(Patron.lastEntry().getKey() == "Cesar") {
+			
+			int claveCesar = Integer.parseInt(Patron.lastEntry().getValue().toString());
+			
+			desCesar(claveCesar);
+		}
 	}
 }

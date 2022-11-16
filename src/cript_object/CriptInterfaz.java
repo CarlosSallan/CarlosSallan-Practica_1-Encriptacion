@@ -16,8 +16,16 @@ public class CriptInterfaz extends JFrame implements ActionListener{
 	JTextField finalField;
 	JButton ButNuevoMsj;
 	JButton ButCesar;
+	JButton ButMonoalfa;
+	JButton ButNumeracion;
+	JTextField ClaveField;
+	CriptObject objeto;
+	
 	
 	public CriptInterfaz(CriptObject objeto){
+		
+		this.objeto = objeto;
+		
 		this.setBounds(250, 150, 1000, 600);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
@@ -36,25 +44,50 @@ public class CriptInterfaz extends JFrame implements ActionListener{
 		this.add(finalLabel);
 		
 		//Textfield Original no editable
-		originalField = new JTextField(objeto.getMensajeOriginal());
+		originalField = new JTextField(this.objeto.getMensajeOriginal());
 		originalField.setBounds(110, 10, 870, 20);
 		originalField.setEditable(false);
 		this.add(originalField);
 		
 		//Textfield Original no editable
-		finalField = new JTextField(objeto.getMensajeFinal());
+		finalField = new JTextField(this.objeto.getMensajeFinal());
 		finalField.setBounds(110, 32, 870, 20);
 		finalField.setEditable(false);
 		this.add(finalField);
 		
+		//Label Clave info
+		JLabel ClaveLabel = new JLabel("Clave: ");
+		ClaveLabel.setBounds(10, 200, 100, 20);
+		this.add(ClaveLabel);
+		
+		//Textfield Clave no editable
+		ClaveField = new JTextField();
+		ClaveField.setBounds(110, 200, 150, 20);
+		this.add(ClaveField);
+		
 		//Boton nuevo mensaje
 		ButNuevoMsj = new JButton("Nuevo Mensaje.");
-		ButNuevoMsj.setBounds(60, 70, 130, 35);
+		ButNuevoMsj.setBounds(800, 70, 130, 35);
 		ButNuevoMsj.addActionListener(this);
 		this.add(ButNuevoMsj);
 		
 		//Boton cesar
-		ButCesar
+		ButCesar = new JButton("Cifrar Cesar.");
+		ButCesar.setBounds(275, 70, 130, 35);
+		ButCesar.addActionListener(this);
+		this.add(ButCesar);
+		
+		//Boton Monoalfa
+		ButMonoalfa = new JButton("Cifrar Monoalfa.");
+		ButMonoalfa.setBounds(490, 70, 130, 35);
+		ButMonoalfa.addActionListener(this);
+		this.add(ButMonoalfa);
+		
+		//Boton Numeracion
+		ButNumeracion = new JButton("Cifrar Numeracion.");
+		ButNumeracion.setBounds(60, 70, 130, 35);
+		ButNumeracion.addActionListener(this);
+		this.add(ButNumeracion);
 		
 		setVisible(true);
 	}
@@ -64,6 +97,9 @@ public class CriptInterfaz extends JFrame implements ActionListener{
 			CriptNuevoMnsj nuevoMsj = new CriptNuevoMnsj();
 			nuevoMsj.setVisible(true);
 			this.dispose();
+		}else if(e.getSource() == ButCesar) {
+			objeto.recTransformacion();
+			//objeto.algCesar();
 		}
 	}
 }
